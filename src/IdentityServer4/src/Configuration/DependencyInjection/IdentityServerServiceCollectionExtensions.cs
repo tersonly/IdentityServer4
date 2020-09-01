@@ -1,4 +1,4 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
+// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
@@ -36,16 +36,25 @@ namespace Microsoft.Extensions.DependencyInjection
             var builder = services.AddIdentityServerBuilder();
 
             builder
+                //增加平台相关的配置 往DI中增加Ioptions ，IHttpContextAccessor等
                 .AddRequiredPlatformServices()
+                //增加认证服务 IAuthenticationService  IdentityServerAuthenticationService  新的实现类，并将原来的任务服务进行装饰，使用装饰器模式调用原来的类
                 .AddCookieAuthentication()
+                //添加核心服务
                 .AddCoreServices()
+                //添加终结点处理器
                 .AddDefaultEndpoints()
+                //添加可以拓展的服务
                 .AddPluggableServices()
+                //添加验证器
                 .AddValidators()
+                //添加结果生成器
                 .AddResponseGenerators()
+                //添加安全相关的解析器
                 .AddDefaultSecretParsers()
+                //添加安全相关的验证器
                 .AddDefaultSecretValidators();
-
+                //将授权 保存在内存中
             // provide default in-memory implementation, not suitable for most production scenarios
             builder.AddInMemoryPersistedGrants();
 

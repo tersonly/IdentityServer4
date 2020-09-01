@@ -46,10 +46,14 @@ namespace IdentityServerHost.Configuration
                 {
                     Description = "Some Transaction"
                 }
+
+                ,
+
+                new ApiScope("api1")
             };
 
         // API resources are more formal representation of a resource with processing rules and their scopes (if any)
-        public static readonly IEnumerable<ApiResource> ApiResources = 
+        public static readonly IEnumerable<ApiResource> ApiResources =
             new[]
             {
                 new ApiResource("resource1", "Resource 1")
@@ -58,7 +62,7 @@ namespace IdentityServerHost.Configuration
 
                     Scopes = { "resource1.scope1", "shared.scope" }
                 },
-                
+
                 new ApiResource("resource2", "Resource 2")
                 {
                     ApiSecrets =
@@ -75,6 +79,8 @@ namespace IdentityServerHost.Configuration
 
                     Scopes = { "resource2.scope1", "shared.scope" }
                 }
+                //,
+                //new ApiResource("api1","api1")
             };
     }
 }
